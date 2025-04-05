@@ -19,11 +19,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%#ts76!fpg((29wo)q@db3y+_4kf!*8x^ru&*g$(ga2$-13*iz'
 
 
-DEBUG = True
-#DEBUG = False
+#DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-#ALLOWED_HOSTS = ["ec2-54-162-90-160.compute-1.amazonaws.com"]
+#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["ec2-54-237-123-228.compute-1.amazonaws.com"]
 
 AUTH_USER_MODEL = 'register.CustomUser'
 
