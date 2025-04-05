@@ -18,7 +18,7 @@ from rest_framework import status
 
 def convert_currency_via_api(amount, from_currency, to_currency):
     try:
-        url = f"ec2-54-162-90-160.compute-1.amazonaws.com/conversion/{from_currency}/{to_currency}/{amount}/"
+        url = f"ec2-54-237-123-228.compute-1.amazonaws.com/conversion/{from_currency}/{to_currency}/{amount}/"
         response = requests.get(url)
         data = response.json()
         if response.status_code == 200 and "converted_amount" in data:
