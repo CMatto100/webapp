@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<h3>All Users</h3>
+<table border="1">
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Balance</th>
+    </tr>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.balance }} {{ user.currency }}</td>
+        </tr>
+    {% empty %}
+    <tr><td colspan="3">No users found.</td></tr>
+    {% endfor %}
+</table>
+
+<h3>Transactions</h3>
+<table border="1">
+    <tr>
+        <th>Date</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Amount</th>
+        <th>Currency</th>
+    </tr>
+    {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction.timestamp|date:"d M Y, H:i" }}</td>
+            <td>{{ transaction.sender.username }}</td>
+            <td>{{ transaction.receiver.username }}</td>
+            <td>{{ transaction.original_amount }} {{ transaction.sender_currency }}</td>
+        </tr>
+    {% empty %}
+    <tr><td colspan="5">No transactions found.</td></tr>
+    {% endfor %}
+</table>
+
+<h3>Pending Payment Requests</h3>
+<table border="1">
+    <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Amount</th>
+        <th>Action</th>
+    </tr>
+    {% for request in payment_requests %}
+        <tr>
+            <td>{{ request.requester.username }}</td>
+            <td>{{ request.recipient.username }}</td>
+            <td>{{ request.amount }} {{ request.currency }}</td>
+            <td>
+                <a href="{% url 'approve_request' request.id %}">Approve</a> |
+                <a href="{% url 'reject_request' request.id %}">Reject</a>
+            </td>
+        </tr>
+    {% empty %}
+    <tr><td colspan="4">No pending requests.</td></tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

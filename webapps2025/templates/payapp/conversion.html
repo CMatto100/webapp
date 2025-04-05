@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Currency Converter</h2>
+
+    <div class="card shadow-lg p-4 mt-3">
+        <form method="POST" class="row g-3">
+            {% csrf_token %}
+
+            <div class="col-md-4">
+                <label for="amount" class="form-label">Amount:</label>
+                <input type="number" name="amount" class="form-control" step="0.01" required>
+            </div>
+
+            <div class="col-md-4">
+                <label for="from_currency" class="form-label">From Currency:</label>
+                <select name="from_currency" class="form-select">
+                    <option value="GBP">🇬🇧 GBP</option>
+                    <option value="USD">🇺🇸 USD</option>
+                    <option value="EUR">🇪🇺 EUR</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="to_currency" class="form-label">To Currency:</label>
+                <select name="to_currency" class="form-select">
+                    <option value="GBP">🇬🇧 GBP</option>
+                    <option value="USD">🇺🇸 USD</option>
+                    <option value="EUR">🇪🇺 EUR</option>
+                </select>
+            </div>
+
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary btn-lg mt-3">Convert</button>
+            </div>
+        </form>
+    </div>
+
+    {% if converted_amount is not None %}
+        <div class="alert alert-success text-center mt-4">
+            <h3>Converted Amount: <strong>{{ converted_amount }}</strong></h3>
+        </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary">⬅ Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

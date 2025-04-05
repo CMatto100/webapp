@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Register</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <label>Username:</label>
+    <input type="text" name="username" required>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required><br>
+
+    <label>Password:</label>
+    <input type="password" name="password1" required>
+
+    <label>Confirm Password:</label>
+    <input type="password" name="password2" required>
+
+    <label>Currency:</label>
+    <select name="currency">
+        <option value="GBP">British Pound</option>
+        <option value="USD">US Dollar</option>
+        <option value="EUR">Euro</option>
+    </select>
+
+    <button type="submit">Register</button>
+</form>
+
+{% if messages %}
+<ul>
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

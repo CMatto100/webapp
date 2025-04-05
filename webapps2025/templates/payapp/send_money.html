@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Send Money</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="recipient">Recipient Username:</label>
+    <input type="text" name="recipient" required>
+
+    <label for="amount">Amount:</label>
+    <input type="number" name="amount" step="0.01" min="0.01" required>
+
+    <button type="submit">Send</button>
+</form>
+
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<a href="{% url 'dashboard' %}">Back to Dashboard</a>
+{% endblock %}
